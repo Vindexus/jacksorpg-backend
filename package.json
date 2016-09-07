@@ -1,0 +1,22 @@
+{
+  "name": "jacksorpg",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "watch": "set PORT=3010 && nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "bootstrap": "^4.0.0-alpha.3",
+    "cards": "^0.1.1",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-bootstrap-service": "^1.0.0",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "node-sass": "^3.8.0",
+    "serve-favicon": "~2.3.0"
+  }
+}

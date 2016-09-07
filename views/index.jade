@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  .container
+    h1= h1
+    .hand
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Your Hand
+        .panel-body
+          each card,index in hand
+            .card-keeper.col-md-2
+              .card("class"="#{card.suit} #{card.value}")
+                .corner
+                  .value= card.value
+                  .suit= card.unicodeSuit()
+                .big= card.value
+
+              .card-actions
+                a.btn.btn-lg(href='/play/#{index}') Keep + Play
+    
+    if hands.length > 0
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Your Hand
+        .panel-body
+          each h in hands
+            .row
+              each card,index in h
+                .card-keeper.col-md-2
+                  .card("class"="#{card.suit} #{card.value}")
+                    .corner
+                      .value= card.value
+                      .suit= card.unicodeSuit()
+                    .big= card.value
+    
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Actions
+      .panel-body
+        a.btn.btn-default(href='/newhand') New Hand
