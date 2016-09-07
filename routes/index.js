@@ -52,32 +52,32 @@ router.get('/newhand', function(req, res, next) {
 router.get('/getdeals', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  var numdeals = 3
+  var numdeals = 100
   var deals = []
   var originalHand = req.query.hand
   var held = req.query.held.split(",")
-
-  console.log('held', held)
-
-  
+ 
   originalHand = originalHand.split(",").map(function (card) {
     return strToCard(card)
   })
-
-  console.log('originalHand', originalHand)
 
   for(var i = 1; i <= numdeals; i++) {
     var d = new cards.PokerDeck();
     d.shuffleAll();
     for(var k = 0; k < 5; k++) {
-      console.log(originalHand[k])
       d.discardACard([originalHand[k].suit, originalHand[k].value])
       //d.draw()
     }    
     var hand = []
     for(var k = 0; k < 5; k++) {
-      console.log('held[' + k + ']', held[k])
-      hand[k] = held[k] == 1 ? originalHand[k] : d.draw()
+      if(parseInt(held[k]) == 1) {
+        hand[k] = originalHand[k]
+      }
+      else {
+        var card = d.draw()
+        //console.log('New card: ', card)
+        hand[k] = card
+      }
     }
     deals.push(cards.cardsToBasics(hand))
   }
